@@ -1,51 +1,22 @@
-import Head from 'next/head'
 import {Inter} from 'next/font/google'
-import {useEffect, useState} from 'react'
-import axios from 'axios'
-import Image from 'next/image'
+import {useCharacters} from '@/assets'
+import {CharacterCard, HeadMeta, Navbar} from '@/components'
 
 const inter = Inter({subsets: ['latin']})
 
-type CharacterType = {
-    id: number
-    name: string
-    image: string
-}
-
 export default function Characters() {
 
-    /* пример запроса */
-    const [characters, setCharacters] = useState<null | CharacterType[]>(null)
-    useEffect(() => {
-        axios.get('https://rickandmortyapi.com/api/character')
-            .then(response => {
-                setCharacters(response.data.results)
-            })
-    }, [])
-
-    console.log(characters)
+    const characters = useCharacters()
 
     return <>
-        <Head>
-            Header
-        </Head>
-        <main>
-            <ul>
-                {characters?.length && characters.map(item => {
-                        return (
-                            <li key={item.id}>
-                                <h3>{item.name}</h3>
-                                <Image
-                                    src={item.image}
-                                    alt={item.name}
-                                    width={200}
-                                    height={200}
-                                    priority
-                                />
-                            </li>
-                        )
-                    }
-                )}
+        <HeadMeta title={'Characters'}/>
+        <main style={{marginTop: '100px'}}>
+            <Navbar/>
+            <ul style={{display: 'flex', flexDirection: 'column', alignItems: 'center', rowGap: '20px'}}>
+                {
+                    characters?.length && characters.map(item =>
+                        <CharacterCard key={item.id} character={item}/>)
+                }
             </ul>
         </main>
     </>

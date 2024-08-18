@@ -1,0 +1,15 @@
+.navbar {
+  width: 100%;
+  top: 2%;
+  position: absolute;
+  z-index: 999;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  column-gap: 100px;
+  font: 600 24px sans-serif;
+
+  a:hover {
+    color: #620fa6;
+  }
+}
