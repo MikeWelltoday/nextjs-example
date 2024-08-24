@@ -6,7 +6,7 @@ export const Navbar = () => {
     return (
         <div className={s.navbar}>
             <Link href={'/'}>Main</Link>
-            <Link href={'/characters'}>Character</Link>
+            <Link href={'/characters'}>Characters</Link>
         </div>
     )
 }

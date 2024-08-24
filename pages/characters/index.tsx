@@ -1,5 +1,6 @@
 import {useCharacters} from '@/assets'
 import {CharacterCard, getLayout, HeadMeta, Navbar} from '@/components'
+import Link from 'next/link'
 
 function Characters() {
 
@@ -10,7 +11,11 @@ function Characters() {
         <ul style={{display: 'flex', flexDirection: 'column', alignItems: 'center', rowGap: '20px'}}>
             {
                 characters?.length && characters.map(item =>
-                    <CharacterCard key={item.id} character={item}/>)
+                    <Link href={`/characters/${item.id}`} key={item.id}>
+                        <CharacterCard character={item}/>
+                    </Link>
+                )
+
             }
         </ul>
     </>
